@@ -1,4 +1,4 @@
-=== Test Wp Workflow ===
+=== Test WP Workflow ===
 Contributors:      10up
 Tags: 
 Requires at least: 4.9

@@ -3,7 +3,7 @@ name: WP CI
 on: [push]
 
 jobs:
-  pa_diary_unit_test:
+  unit_test:
     runs-on: ${{ matrix.operating-system }}
     strategy:      
       matrix:
@@ -11,15 +11,13 @@ jobs:
         php-versions: ['7.2']
     services:
       mysql:
-        image: mysql:latest
-        ports:
-          - 3306/tcp
+        image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: wordpress_test
-          MYSQL_USER: root
-          MYSQL_PASSWORD: password
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
     - name: checkout
       uses: actions/checkout@v1
